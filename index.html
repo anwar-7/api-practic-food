@@ -15,28 +15,42 @@
   </head>
   <body>
     <main>
-      <section>
+      <section class="container">
         <h1 class="text-center fw-bold fs-1 my-3">Search Your Food</h1>
         <!-- Search field here -->
-        <div class="input-group mb-3">
+        <div class="input-group mx-auto pb-3">
           <!-- search input fields -->
           <input
             id="search-field"
             type="text"
-            class="form-control"
+            class="form-control w-50"
             placeholder="Search your food here"
             aria-label="Search your food here"
             aria-describedby="button-search"
           />
           <!-- search button -->
           <button
-            class="btn btn-outline-secondary bg-primary text-white"
+            class="btn btn-outline-secondary bg-primary text-white fw-bold"
             type="button"
-            id="button-search"
+            onclick="lodeFoodData()"
           >
             Search Food
           </button>
         </div>
+      </section>
+      <!-- display section -->
+      <section>
+        <div
+          id="display-food"
+          class="row row-cols-sm-3 row-cols-md-3 g-4"
+        ></div>
+      </section>
+      <!-- modal section -->
+      <section>
+        <div id="modal-detils" class="modal" tabindex="-1">
+          <div class="modal-dialog"></div>
+        </div>
+        >
       </section>
     </main>
 
