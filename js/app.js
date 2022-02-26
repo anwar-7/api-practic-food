@@ -1,7 +1,10 @@
+const displayFood = document.getElementById('display-food');
+
 const lodeFoodData = async () => {
   const inputField = document.getElementById('search-field');
   const inputFieldText = inputField.value;
   inputField.value = '';
+  displayFood.textContent = '';
   //   console.log(inputFieldText);
   const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${inputFieldText}`;
   const res = await fetch(url);
@@ -11,11 +14,23 @@ const lodeFoodData = async () => {
 
 const displayFoodData = (meals) => {
   //   console.log(meals.strMealThumb);
+
   meals.forEach((meal) => {
     // console.log(meal);
-    const displayFood = document.getElementById('display-food');
+
+    /* 
+    // const displayFood = document.getElementById('display-food'); 
+    // this is not needed here this is global now 
+    */
+
     const div = document.createElement('div');
     div.classList.add('col');
+
+    /*  
+  // div.innerText = ''; // this is ont working
+  // displayFood.innerHTML = ''; // this is not working 
+  */
+
     div.innerHTML = `
     <div class="card" style="width: 18rem">
         <img src="${meal.strMealThumb}" class="card-img-top" alt="..." />
@@ -52,10 +67,11 @@ const displayDetailByIdName = (meals) => {
     const modal = document.getElementById('modal-detils');
     const div = document.createElement('div');
     div.classList.add('modal-dialog');
+    modal.textContent = '';
     div.innerHTML = `
         <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">${meal.strTags}</h5>
+                    <h5 class="modal-title"> ${meal.strTags}</h5>
                     <button
                     type="button"
                     class="btn-close"
@@ -64,7 +80,7 @@ const displayDetailByIdName = (meals) => {
                     ></button>
                 </div>
                 <div class="modal-body">
-                    <p>Title: ${meal.strMeal}, Details:${meal.strInstructions} </p>
+                    <p>Title: ${meal.strMeal}, Details: ${meal.strInstructions} </p>
                 </div>
                 <div class="modal-footer">
                     <a href="${meal.strYoutube}" type="button" class="btn btn-primary">
